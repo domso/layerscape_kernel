@@ -1,0 +1,17 @@
+
+ENTRY(init_el3)
+
+SECTIONS
+{
+ . = 0x80010000;
+ kernel_memory_start = .;
+ .text : { *(.text) }
+ .data : { *(.data) }
+ .bss : { *(.bss COMMON) }
+ . = ALIGN(16); 
+ stack_bot = .;
+ . = . + 0x10000; /* stack */
+ stack_top = .;
+ . = ALIGN(4096); 
+ kernel_memory_end = .;
+}
