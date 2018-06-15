@@ -4,3 +4,4 @@ It builds on U-Boot and allows the execution of small C-Style programs.
 More information are provided by the documents in *docs/*.
 
 
+[![Demo](http://img.youtube.com/vi/uBSYCNbhDUw/0.jpg)](https://www.youtube.com/watch?v=uBSYCNbhDUw&index=2&list=PLIQyCM45OxZ1qWWsDCDr13sBWCy7VoqzJ)
