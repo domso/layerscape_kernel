@@ -42,40 +42,27 @@ namespace kernel {
         static void load() {
             if (is_core0() || module::info::multi_load) {
                 if (is_core0()) {
-                    log("[Kernel] Load module '", false);
-                    log(module::info::title, false);
-                    log("'...", false);
+                    log("[Kernel] Load module '");
+                    log(module::info::title);
+                    log("'...");
                 }
 
                 if (module::load()) {
                     if (is_core0()) {
-                        log("Success");
+                        log("Success\n");
                     }
                 } else {
                     if (is_core0()) {
-                        log("Failure");
+                        log("Failure\n");
 
                         while (true) {}
                     }
                 }
             }
-
-            asm(
-                "dsb sy\n"
-                "isb"
-            );
         }
 
         static void start_registered_app();
 
-        static byte* page_alloc();
-        static bool page_free(byte* addr);
-        static int page_size();
-
-        static void register_exception_sync(void (*handler)(byte*));
-        static void register_exception_IRQ(void (*handler)(byte*));
-        static void register_exception_FIQ(void (*handler)(byte*));
-        static void register_exception_SError(void (*handler)(byte*));
         static void register_stdout(void (*stdout)(const char*));
         static void register_start_application(void (*startApp)(void));
 
@@ -83,7 +70,7 @@ namespace kernel {
         static void set_core_count(const int count);
         static uint32_t MPIDR();
     private:
-        static void log(const char* msg, const bool newline = true);
+        static void log(const char* msg);
 
         constexpr static const int m_early_msg_buffer_size = 1000;
 
@@ -107,3 +94,4 @@ namespace kernel {
 }
 
 #endif
+

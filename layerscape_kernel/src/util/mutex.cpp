@@ -8,7 +8,7 @@ namespace util {
     void mutex::lock() {
         bool current;
 
-        asm volatile("dsb st");
+//         asm volatile("dsb st");
 
         do {
             current = false;
@@ -16,13 +16,13 @@ namespace util {
     }
 
     void mutex::unlock() {
-        asm volatile("dsb st");
+//         asm volatile("dsb st");
         m_isLocked = false;
     }
 
     bool mutex::try_lock() {
         bool current = false;
-        asm volatile("dsb st");
+//         asm volatile("dsb st");
         return m_isLocked.compare_exchange_strong(current, true);
     }
 }

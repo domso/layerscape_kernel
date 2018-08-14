@@ -3,12 +3,14 @@
 
 void module_list();
 
-extern "C"
-void c_entry(const bool secondaryCore) {
-    if (!secondaryCore) {
-        kernel::system::init();
-    }
 
+// const bool secondaryCore
+extern "C"
+void c_entry() {
+//     if (!secondaryCore) {
+        kernel::system::init();
+//     }
+    
     module_list();
     kernel::system::start_registered_app();
 
